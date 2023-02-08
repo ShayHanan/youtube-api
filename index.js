@@ -19,7 +19,7 @@ const connect = () => {
     }).catch(err => { throw err; });
 };
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "https://shaytube-api.onrender.com",
     credentials: true
 }));
 app.use(cookieParser());
