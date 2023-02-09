@@ -2,10 +2,10 @@ import jwt from "jsonwebtoken";
 import { createError } from "./error.js";
 
 export const verifyToken = (req, res, next) => {
-    const token = req.cookies.access_token;
+    const tokenHeader = req.headers.token;
 
-    if (!token) return next(createError(401, "not authenticated"));
-
+    if (!tokenHeader) return next(createError(401, "not authenticated"));
+    const token = tokenHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT, (err, user) => {
         if (err) next(createError(403, "token is invalid"));
 
